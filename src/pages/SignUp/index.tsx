@@ -9,6 +9,7 @@ import getValidaionErros from '../../utils/getValidationErrors';
 import * as Yup from 'yup';
 
 import { Form } from '@unform/web';
+import { Link } from 'react-router-dom';
 
 const SignUp: React.FC = () => {
   const formRef = useRef<FormHandles>(null);
@@ -47,10 +48,10 @@ const SignUp: React.FC = () => {
           <Button type="submit">Cadastrar</Button>
         </Form>
 
-        <a href="create">
+        <Link to="/">
           <FiArrowLeft />
-        Voltar para logon
-      </a>
+          Voltar para logon
+        </Link>
       </Content>
 
     </Container>

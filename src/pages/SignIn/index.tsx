@@ -1,5 +1,4 @@
 import React, { useRef, useCallback } from 'react';
-import { Container, Content, Background } from './styles'
 import logoImg from '../../assets/logo.svg';
 import { FiLogIn, FiMail, FiLock } from "react-icons/fi";
 import Input from '../../components/input';
@@ -7,10 +6,13 @@ import Button from '../../components/button';
 import { Form } from '@unform/web';
 import { FormHandles } from '@unform/core';
 import * as Yup from 'yup';
+import { Link } from 'react-router-dom';
+
+import { Container, Content, Background } from './styles'
+
 import getValidaionErros from '../../utils/getValidationErrors';
 import { useAuth } from '../../hooks/Auth';
 import { useToast } from '../../hooks/Toast';
-
 
 
 interface signInFormData {
@@ -46,7 +48,12 @@ const SignIn: React.FC = () => {
           const erros = getValidaionErros(error);
           formRef.current?.setErrors(erros);
         }
-        addToast();
+
+        addToast({
+          type: 'info',
+          title: 'erro na autenticação',
+          description: 'erro econtrado na autenticação do usuário'
+        });
 
       }
     }, [signIn, addToast]);
@@ -67,10 +74,10 @@ const SignIn: React.FC = () => {
           <a href="forgot">Esqueci minha senha</a>
         </Form>
 
-        <a href="create">
+        <Link to="/signup">
           <FiLogIn />
-        Criar conta
-      </a>
+            Criar conta
+        </Link>
       </Content>
 
       <Background />
